@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Generator — Secure, Random, Local</title>
+<meta name="description" content="Generate strong random passwords right in your browser. Adjustable length and character types, real cryptographic randomness, nothing sent over the network.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect x=%224%22 y=%2211%22 width=%2216%22 height=%2210%22 rx=%222%22 fill=%22%23b5533c%22/><path d=%22M8 11V7a4 4 0 018 0v4%22 stroke=%22%23b5533c%22 stroke-width=%222%22 fill=%22none%22/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <span class="logo">Password Generator</span>
+  </div>
+</header>
+
+<main id="main" class="wrap panel-wrap">
+
+  <section class="panel" aria-label="Password generator">
+
+    <div class="output-row">
+      <label for="passwordOutput" class="sr-only">Generated password</label>
+      <input type="text" id="passwordOutput" class="password-output" readonly spellcheck="false" aria-live="polite">
+      <button id="copyBtn" class="icon-btn" type="button" title="Copy password" aria-label="Copy password">Copy</button>
+      <button id="regenBtn" class="icon-btn" type="button" title="Generate new password" aria-label="Generate new password">↻</button>
+    </div>
+
+    <div class="strength-row" aria-live="polite">
+      <div class="strength-track">
+        <div id="strengthFill" class="strength-fill"></div>
+      </div>
+      <span id="strengthLabel" class="strength-label">—</span>
+    </div>
+
+    <div class="controls">
+
+      <div class="control-row">
+        <label for="lengthRange">Length</label>
+        <span id="lengthValue" class="length-value">16</span>
+      </div>
+      <input type="range" id="lengthRange" min="6" max="64" value="16" class="slider">
+
+      <div class="check-grid">
+        <label class="check-item">
+          <input type="checkbox" id="optUpper" checked>
+          <span>Uppercase (A–Z)</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="optLower" checked>
+          <span>Lowercase (a–z)</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="optNumbers" checked>
+          <span>Numbers (0–9)</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="optSymbols" checked>
+          <span>Symbols (!@#$…)</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="optExclude">
+          <span>Exclude similar characters (l, 1, I, O, 0)</span>
+        </label>
+      </div>
+
+      <button id="generateBtn" class="btn-main" type="button">Generate password</button>
+
+      <p id="errorMsg" class="error-msg" role="alert"></p>
+      <p id="copyStatus" class="copy-status" role="status" aria-live="polite"></p>
+
+    </div>
+
+  </section>
+
+  <section class="note wrap-note">
+    <p>Passwords are generated using your browser's cryptographic random number generator and never leave your device — nothing is sent to a server, logged, or stored.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; <span id="year"></span> — runs entirely in your browser, no data collected.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
